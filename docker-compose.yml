@@ -10,6 +10,8 @@ services:
       - ./loki-config.yaml:/etc/loki/local-config.yaml
       - ./loki-data:/loki
     command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - monitoring
     restart: unless-stopped
 
   promtail:
@@ -20,6 +22,8 @@ services:
     command: -config.file=/etc/promtail/config.yml
     depends_on:
       - loki
+    networks:
+      - monitoring
     restart: unless-stopped
 
   grafana:
@@ -31,4 +35,10 @@ services:
       - ./grafana-data:/var/lib/grafana
     depends_on:
       - loki
+    networks:
+      - monitoring
     restart: unless-stopped
+
+networks:
+  monitoring:
+    driver: bridge
