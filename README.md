@@ -15,6 +15,7 @@ monitoring/
 yaml
 Copy code
 
+
 ---
 
 ## ⚙️ O‘rnatish bosqichlari
